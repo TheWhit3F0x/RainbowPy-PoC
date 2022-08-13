@@ -15,7 +15,7 @@ There are two scripts in this repository (which can be imported into another scr
 
 ## Rainbowgenerator
 
-Generates a hash chain from a seed (random if not provided) and returns the seed, a PoC hash obtained through the process and the final hash
+Generates a hash chain from a seed (random if not provided) and returns the seed, a PoC hash obtained through the process and the final hash.
 
 ```
 usage: rainbowgenerator.py [-h] [--seed SEED] --chainlength CHAINLENGTH --pocindex POCINDEX
@@ -29,7 +29,7 @@ options:
 
 ## Rainbowcheck
 
-Checks if a PoC hash is in a chain of determined length and returns the original string if found. To define a chain, its seed, final hash and length must be provided
+Checks if a PoC hash is in a chain of determined length and returns the original string if found. To define a chain, its seed, final hash and length must be provided.
 
 ```
 usage: rainbowcheck.py [-h] --seed SEED --endhash ENDHASH --pochash POCHASH --chainlength CHAINLENGTH
