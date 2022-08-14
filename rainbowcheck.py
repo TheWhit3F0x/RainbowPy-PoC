@@ -5,6 +5,8 @@ from argparse import ArgumentParser
 
 class ChainLengthError(Exception):
     pass
+class ChainDataError(Exception):
+    pass
 
 def main(seed, endhash, pochash, chainlength):
     
@@ -48,12 +50,17 @@ def main(seed, endhash, pochash, chainlength):
         print("Not found in the chain")
         sys.exit()
 
+    found = False
+
     for _ in range(chainlength):
         tryhash = hashlib.md5(seed.encode('UTF-8')).digest()
         if tryhash == pochash:
+            found = True
             print(f"The original string is: {seed}")
             break
         seed = base64.b64encode(tryhash).decode('UTF-8')[:7]
+
+    raise ChainDataError("Found the PoC hash in the chain, but the seed or chainlength may be wrong")
 
 if __name__ == '__main__':
     parser = ArgumentParser(
