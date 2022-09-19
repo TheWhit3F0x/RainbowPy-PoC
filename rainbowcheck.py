@@ -36,6 +36,7 @@ def main(seed, endhash, pochash, chainlength):
     pochash = bytes.fromhex(pochash)
 
     tryhash = pochash
+    found = False
 
     for _ in range(chainlength):
         tryhash = base64.b64encode(tryhash).decode('UTF-8')[:7]
@@ -59,8 +60,9 @@ def main(seed, endhash, pochash, chainlength):
             print(f"The original string is: {seed}")
             break
         seed = base64.b64encode(tryhash).decode('UTF-8')[:7]
-
-    raise ChainDataError("Found the PoC hash in the chain, but the seed or chainlength may be wrong")
+    
+    if not found:
+        raise ChainDataError("Found the PoC hash in the chain, but the seed or chainlength may be wrong")
 
 if __name__ == '__main__':
     parser = ArgumentParser(
